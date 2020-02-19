@@ -1,121 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Speedline Weather Conditions</title>
     <style>
-        #map{
-            height: 865px;
-            width: 100%;
-        }
+      #map {
+        height: 865px;
+        width: 100%;
+      }
+      h1 {
+        font-family: "Lucida Sans";
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>
-        Weather Conditions Speedline
+      Weather Conditions in BC
     </h1>
-<div id = "map"></div>
+    <div id="map"></div>
 
+    <script>
+      //javascript code goes here
+      //To make the page production quality, a better design for the page itself would have to be implemented, with a well designed container for the embedded map.
 
-    <script>//javascript code goes here
-//api key: AIzaSyBNLv_numxZ3KT7LkmJvSresszkFDMS2-c
-var cityNames = ["Dease Lake","Fort Nelson","Terrace","Prince George","Whistler","Revelstoke", "Creston"];
-function initMap(){
-    var options = {
-        zoom: 6.05,
-        center:{lat: 54.616036, lng: -125.157489}
-
-    }
-    //creating the map
-    var map = new google.maps.Map(document.getElementById('map'), options);
-
-    contentStringDeaseLake = '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-14&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringFortNelson = '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-83&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringTerrace= '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-80&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringPrinceGeorge= '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-79&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringWhistler= '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-86&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringRevelstoke= '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-65&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    contentStringCreston= '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-26&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>'
-    var deaselakeinfowindow = new google.maps.InfoWindow({
-        content: contentStringDeaseLake
-      });
-      var fortnelsoninfowindow = new google.maps.InfoWindow({
-        content: contentStringFortNelson
-      });
-      var terraceinfowindow = new google.maps.InfoWindow({
-        content: contentStringTerrace
-      });
-      var princegeorgeinfowindow = new google.maps.InfoWindow({
-        content: contentStringPrinceGeorge
-      });
-      var whistlerinfowindow = new google.maps.InfoWindow({
-        content: contentStringWhistler
-      });
-      var revelstokeinfowindow = new google.maps.InfoWindow({
-        content: contentStringRevelstoke
-      });
-      var crestoninfowindow = new google.maps.InfoWindow({
-        content: contentStringCreston
-      });
-
-
-    var deaseMarker = new google.maps.Marker({
-        position:{lat:58.4374, lng:-129.9994},
-        map:map
-    });
-    var fortnelsonMarker = new google.maps.Marker({
-        position:{lat:58.8050, lng:-122.6972},
-        map:map
-    });
-    var terraceMarker = new google.maps.Marker({
-        position:{lat:54.5182, lng:-128.6032},
-        map:map
-    });
-    var princegeorgeMarker = new google.maps.Marker({
-        position:{lat:53.9171, lng:-122.7497},
-        map:map
-    });
-    var whistlerMarker = new google.maps.Marker({
-        position:{lat:50.1163, lng:-122.9574},
-        map:map
-    });
-    var revelstokeMarker = new google.maps.Marker({
-        position:{lat:50.9981, lng:-118.1957},
-        map:map
-    });
-    var crestonMarker = new google.maps.Marker({
-        position:{lat:49.0955, lng:-116.5135},
-        map:map
-    });
-    deaseMarker.addListener('click', function() {
-        deaselakeinfowindow.open(map, deaseMarker);
-      })
-      fortnelsonMarker.addListener('click', function() {
-        fortnelsoninfowindow.open(map, fortnelsonMarker);
-      })
-      terraceMarker.addListener('click', function() {
-        terraceinfowindow.open(map, terraceMarker);
-      })
-      princegeorgeMarker.addListener('click', function() {
-        princegeorgeinfowindow.open(map, princegeorgeMarker);
-      })
-      whistlerMarker.addListener('click', function() {
-        whistlerinfowindow.open(map, whistlerMarker);
-      })
-      revelstokeMarker.addListener('click', function() {
-        revelstokeinfowindow.open(map,  revelstokeMarker);
-      })
-    crestonMarker.addListener('click', function() {
-        crestoninfowindow.open(map, crestonMarker);
-      })
-
-}
+      function initMap() {
+        //initializing the google map centered in on British Columbia
+        var options = {
+          zoom: 6.05,
+          center: { lat: 54.616036, lng: -125.157489 }
+        };
+        //creating the map
+        var map = new google.maps.Map(document.getElementById("map"), options);
+        //creating content strings that hold the iframe data from Environment Canada
+        contentStringDeaseLake =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-14&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringFortNelson =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-83&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringTerrace =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-80&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringPrinceGeorge =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-79&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringWhistler =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-86&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringRevelstoke =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-65&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        contentStringCreston =
+          '<iframe title="Environment Canada Weather" width="287px" height="191px" src="https://weather.gc.ca/wxlink/wxlink.html?cityCode=bc-26&amp;lang=e" allowtransparency="true" frameborder="0"></iframe>';
+        //creating the info windows that contain the iframes
+        var deaselakeinfowindow = new google.maps.InfoWindow({
+          content: contentStringDeaseLake
+        });
+        var fortnelsoninfowindow = new google.maps.InfoWindow({
+          content: contentStringFortNelson
+        });
+        var terraceinfowindow = new google.maps.InfoWindow({
+          content: contentStringTerrace
+        });
+        var princegeorgeinfowindow = new google.maps.InfoWindow({
+          content: contentStringPrinceGeorge
+        });
+        var whistlerinfowindow = new google.maps.InfoWindow({
+          content: contentStringWhistler
+        });
+        var revelstokeinfowindow = new google.maps.InfoWindow({
+          content: contentStringRevelstoke
+        });
+        var crestoninfowindow = new google.maps.InfoWindow({
+          content: contentStringCreston
+        });
+        //creating the markers for the cities required
+        var deaseMarker = new google.maps.Marker({
+          position: { lat: 58.4374, lng: -129.9994 },
+          map: map
+        });
+        var fortnelsonMarker = new google.maps.Marker({
+          position: { lat: 58.805, lng: -122.6972 },
+          map: map
+        });
+        var terraceMarker = new google.maps.Marker({
+          position: { lat: 54.5182, lng: -128.6032 },
+          map: map
+        });
+        var princegeorgeMarker = new google.maps.Marker({
+          position: { lat: 53.9171, lng: -122.7497 },
+          map: map
+        });
+        var whistlerMarker = new google.maps.Marker({
+          position: { lat: 50.1163, lng: -122.9574 },
+          map: map
+        });
+        var revelstokeMarker = new google.maps.Marker({
+          position: { lat: 50.9981, lng: -118.1957 },
+          map: map
+        });
+        var crestonMarker = new google.maps.Marker({
+          position: { lat: 49.0955, lng: -116.5135 },
+          map: map
+        });
+        //adding click functionality so that clicking the markers displays the info windows. This choice could be modified to make the information more readily available on page load.
+        //The iframes overlap eachother in this current iteration
+        deaseMarker.addListener("click", function() {
+          deaselakeinfowindow.open(map, deaseMarker);
+        });
+        fortnelsonMarker.addListener("click", function() {
+          fortnelsoninfowindow.open(map, fortnelsonMarker);
+        });
+        terraceMarker.addListener("click", function() {
+          terraceinfowindow.open(map, terraceMarker);
+        });
+        princegeorgeMarker.addListener("click", function() {
+          princegeorgeinfowindow.open(map, princegeorgeMarker);
+        });
+        whistlerMarker.addListener("click", function() {
+          whistlerinfowindow.open(map, whistlerMarker);
+        });
+        revelstokeMarker.addListener("click", function() {
+          revelstokeinfowindow.open(map, revelstokeMarker);
+        });
+        crestonMarker.addListener("click", function() {
+          crestoninfowindow.open(map, crestonMarker);
+        });
+      }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLv_numxZ3KT7LkmJvSresszkFDMS2-c&callback=initMap"
-    async defer></script>
-</body>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNLv_numxZ3KT7LkmJvSresszkFDMS2-c&callback=initMap"
+      async
+      defer
+    ></script>
+  </body>
 </html>
